@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanene ABIDI — Directrice de Projets Digitaux</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0e12;
+    --paper: #f5f2ed;
+    --accent: #c8a96e;
+    --accent2: #3a6ea5;
+    --muted: #7a7870;
+    --border: rgba(200,169,110,0.25);
+    --card-bg: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    color: var(--paper);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(58,110,165,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,169,110,0.12) 0%, transparent 60%);
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 8rem 6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(245,242,237,0.6);
+    max-width: 380px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.8rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--ink);
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--paper);
+    border: 1px solid rgba(245,242,237,0.3);
+  }
+  .btn-secondary:hover { border-color: var(--paper); }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    padding: 4rem;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(200,169,110,0.15);
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 380px;
+  }
+  .stat-item {
+    background: rgba(13,14,18,0.8);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .stat-item:hover { background: rgba(200,169,110,0.08); }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,242,237,0.5);
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,14,18,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--paper);
+    letter-spacing: 0.08em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,242,237,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 6rem; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 4rem;
+    max-width: 600px;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .about-text {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(245,242,237,0.75);
+  }
+  .about-text p + p { margin-top: 1.2rem; }
+  .highlight { color: var(--accent); font-style: italic; }
+
+  .contact-block {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    display: grid;
+    gap: 1rem;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.88rem;
+    color: rgba(245,242,237,0.6);
+  }
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  .contact-item a { color: var(--accent); text-decoration: none; }
+
+  .expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+  .tag {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,242,237,0.55);
+    transition: all 0.2s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  #experience { background: var(--paper); }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 4rem 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -5px;
+    top: 0.4rem;
+    width: 11px;
+    height: 11px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px rgba(200,169,110,0.3);
+  }
+
+  .timeline-period {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+  }
+  .timeline-company {
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+  .timeline-list {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    max-width: 640px;
+  }
+  .timeline-list li {
+    font-size: 0.9rem;
+    color: #444;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .timeline-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  .result-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1.2rem;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid rgba(200,169,110,0.3);
+    font-size: 0.8rem;
+    color: #8a6a2e;
+  }
+  .result-badge::before { content: '✦'; font-size: 0.6rem; }
+
+  /* ── SKILLS ── */
+  #skills { background: #f0ede8; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(13,14,18,0.08);
+    border: 1px solid rgba(13,14,18,0.08);
+  }
+  .skill-card {
+    background: var(--paper);
+    padding: 2.5rem 2rem;
+    transition: all 0.25s ease;
+  }
+  .skill-card:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .skill-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .skill-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+  .skill-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+    transition: color 0.25s;
+  }
+  .skill-card:hover .skill-desc { color: rgba(245,242,237,0.55); }
+
+  /* ── TOOLS ── */
+  #tools { background: var(--ink); color: var(--paper); }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .tool-item {
+    background: var(--ink);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .tool-item:hover { background: rgba(200,169,110,0.1); }
+  .tool-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--paper);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .tool-cat {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070809;
+    color: var(--paper);
+    padding: 4rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+  }
+  .footer-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    letter-spacing: 0.1em;
+  }
+  .footer-contact {
+    text-align: right;
+  }
+  .footer-contact a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.88rem;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 5rem 2rem; }
+    nav { padding: 0 2rem; }
+    nav .nav-links { display: none; }
+    section { padding: 4rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    footer { grid-template-columns: 1fr; padding: 3rem 2rem; }
+    .footer-contact { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <span class="hero-tag">Portfolio Professionnel</span>
+    <h1 class="hero-name">Hanene<br><em>ABIDI</em></h1>
+    <p class="hero-title">Directrice de Projets Digitaux · Senior Delivery Manager · Experte Agile & Plateformes — Île-de-France</p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-primary">Voir l'expérience</a>
+      <a href="#contact" class="btn btn-secondary">Me contacter</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">12+</span>
+        <span class="stat-label">Années d'expertise</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Pays couverts</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">20+</span>
+        <span class="stat-label">Experts managés</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">4M€</span>
+        <span class="stat-label">Budget piloté</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">H. ABIDI</span>
+  <ul class="nav-links">
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#tools">Outils</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Profil</div>
+  <h2 class="section-title">Piloter la <em>transformation digitale</em> de bout en bout</h2>
+  <div class="about-grid">
+    <div>
+      <div class="about-text">
+        <p>Directrice de projets techniques avec plus de <span class="highlight">12 ans d'expérience</span> dans les télécommunications, le streaming et les médias numériques, j'orchestre des programmes complexes à forte dimension internationale.</p>
+        <p>De Canal+ à TF1 en passant par Bouygues Télécom, j'ai conduit des lancements majeurs de plateformes, géré des budgets dépassant <span class="highlight">4 millions d'euros</span> et coordonné des équipes transverses de 20+ experts.</p>
+        <p>Mon approche conjugue rigueur technique, vision produit et conduite du changement — avec une expertise Agile (Scrum, Kanban) ancrée dans la réalité des grandes organisations.</p>
+      </div>
+      <div class="expertise-tags">
+        <span class="tag">Delivery Agile</span>
+        <span class="tag">Streaming OTT</span>
+        <span class="tag">International</span>
+        <span class="tag">Cloud & CDN</span>
+        <span class="tag">UX Research</span>
+        <span class="tag">Data Strategy</span>
+        <span class="tag">Gouvernance</span>
+        <span class="tag">Change Mgmt</span>
+      </div>
+    </div>
+    <div id="contact">
+      <div class="contact-block">
+        <div class="contact-item">
+          <span class="contact-icon">✉</span>
+          <a href="mailto:hanene.abidi18@gmail.com">hanene.abidi18@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">☏</span>
+          <span>06 43 28 69 30</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">⌖</span>
+          <span>Île-de-France, France</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">⊕</span>
+          <span>Français · Anglais (professionnel)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Parcours</div>
+  <h2 class="section-title">Une trajectoire au cœur des <em>grandes plateformes</em></h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <span class="timeline-dot"></span>
+      <div class="timeline-period">12/2024 — 07/2025</div>
+      <h3 class="timeline-role">Directrice de Projet Technique (International)</h3>
+      <div class="timeline-company">Canal+ International</div>
+      <ul class="timeline-list">
+        <li>Pilotage de programmes digitaux internationaux (Afrique & Océan Indien) pour 10+ pays</li>
+        <li>Coordination des équipes métiers, techniques et partenaires en environnement complexe</li>
+        <li>Organisation des phases UAT et delivery bout-en-bout</li>
+        <li>Définition et suivi des KPI de performance, reporting à la gouvernance</li>
+        <li>Conduite du changement auprès des parties prenantes locales</li>
+      </ul>
+      <div class="result-badge">Déploiement réussi améliorant significativement l'UX sur 10+ marchés</div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="timeline-dot"></span>
+      <div class="timeline-period">05/2021 — 12/2024</div>
+      <h3 class="timeline-role">Directrice de Projets Techniques — Streaming</h3>
+      <div class="timeline-company">TF1</div>
+      <ul class="timeline-list">
+        <li>Pilotage E2E du lancement de TF1+ (France & International)</li>
+        <li>Management d'une équipe transverse de 20+ experts (PO, Techlead, Devs, PM) sous Jira/Confluence</li>
+        <li>Définition de la roadmap produit 360° et delivery en méthodologie Agile</li>
+        <li>Animation des ateliers UX/UI pour optimiser la rétention utilisateurs</li>
+        <li>Mise en place de la stratégie Data (collecte, consentement, valorisation)</li>
+        <li>Gestion des risques et des incidents critiques</li>
+      </ul>
+      <div class="result-badge">Lancement majeur de TF1+ avec amélioration continue des KPI d'engagement</div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="timeline-dot"></span>
+      <div class="timeline-period">08/2016 — 05/2021</div>
+      <h3 class="timeline-role">Responsable Pilotage Projets & Plateformes de Services</h3>
+      <div class="timeline-company">Bouygues Télécom</div>
+      <ul class="timeline-list">
+        <li>Direction de projets stratégiques à budget > 4M€ (TV Adressable, upgrade encodeurs)</li>
+        <li>Animation des instances de gouvernance (COPIL, COPROJ)</li>
+        <li>Pilotage d'équipes pluridisciplinaires et gestion multifournisseurs (RFQ, contrats)</li>
+        <li>Garantie de la scalabilité et haute disponibilité (SLA) des plateformes</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <span class="timeline-dot"></span>
+      <div class="timeline-period">04/2015 — 04/2016</div>
+      <h3 class="timeline-role">Chef de Projet Technique — Infrastructure CDN</h3>
+      <div class="timeline-company">Canal Plus</div>
+      <ul class="timeline-list">
+        <li>Pilotage du déploiement d'un CDN interne propriétaire pour optimiser les flux vidéo</li>
+        <li>Définition de l'architecture technique cible avec les experts réseaux et système</li>
+        <li>Suivi rigoureux de la mise en production et tests de performance de charge</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <span class="timeline-dot"></span>
+      <div class="timeline-period">10/2013 — 03/2015</div>
+      <h3 class="timeline-role">Ingénieur Études & MOE Plateformes CDN</h3>
+      <div class="timeline-company">SFR</div>
+      <ul class="timeline-list">
+        <li>Études de conception pour des plateformes de diffusion de contenu à grande échelle</li>
+        <li>Analyse des indicateurs de performance pour optimiser le débit et la latence</li>
+        <li>Interface technique entre les besoins métier et les équipes de développement</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <span class="timeline-dot"></span>
+      <div class="timeline-period">04/2012 — 09/2013</div>
+      <h3 class="timeline-role">Chef de Produit & Projets Applications Mobiles</h3>
+      <div class="timeline-company">Bouygues Télécom</div>
+      <ul class="timeline-list">
+        <li>Pilotage du cycle de vie des applications mobiles (Samsung, Nokia)</li>
+        <li>Coordination des lancements avec Marketing, Achats et Support Client</li>
+        <li>Analyse des KPIs de téléchargement pour orienter les évolutions produit</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Compétences clés</div>
+  <h2 class="section-title">Des expertises au service de la <em>performance</em></h2>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <span class="skill-icon">⚡</span>
+      <div class="skill-name">Delivery Agile</div>
+      <div class="skill-desc">Scrum, Kanban & méthodologies hybrides. Pilotage de backlogs complexes, roadmaps produit 360°, rituels de gouvernance COPIL/COPROJ.</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🌐</span>
+      <div class="skill-name">Plateformes Digitales</div>
+      <div class="skill-desc">Lancement et opération de plateformes streaming OTT, LMS et services digitaux à grande échelle — France et International.</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">📊</span>
+      <div class="skill-name">Data & Performance</div>
+      <div class="skill-desc">Stratégie data (collecte, consentement, valorisation), définition de KPIs, dashboards temps réel avec Grafana et DataDog.</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🔄</span>
+      <div class="skill-name">Conduite du Changement</div>
+      <div class="skill-desc">Animation de workshops et webinaires (+100 utilisateurs/session), adoption produit, communication stratégique des évolutions.</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🎨</span>
+      <div class="skill-name">UX Research & Design</div>
+      <div class="skill-desc">Définition des parcours UX/UI, recueil des besoins métier, optimisation de la rétention et de la satisfaction utilisateur.</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">☁</span>
+      <div class="skill-name">Architecture Cloud & CDN</div>
+      <div class="skill-desc">AWS, Docker, Kafka, CDN propriétaire. Scalabilité, haute disponibilité (SLA), intégration CI/CD et observabilité des plateformes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-label">Outils & Technologies</div>
+  <h2 class="section-title" style="color:var(--paper)">Un écosystème technique <em>maîtrisé</em></h2>
+  <div class="tools-grid fade-in">
+    <div class="tool-item"><span class="tool-name">Jira</span><span class="tool-cat">Agile · PM</span></div>
+    <div class="tool-item"><span class="tool-name">Confluence</span><span class="tool-cat">Documentation</span></div>
+    <div class="tool-item"><span class="tool-name">AWS</span><span class="tool-cat">Cloud</span></div>
+    <div class="tool-item"><span class="tool-name">Docker</span><span class="tool-cat">DevOps</span></div>
+    <div class="tool-item"><span class="tool-name">Kafka</span><span class="tool-cat">Streaming data</span></div>
+    <div class="tool-item"><span class="tool-name">Grafana</span><span class="tool-cat">Monitoring</span></div>
+    <div class="tool-item"><span class="tool-name">DataDog</span><span class="tool-cat">Observabilité</span></div>
+    <div class="tool-item"><span class="tool-name">CDN</span><span class="tool-cat">Performance</span></div>
+    <div class="tool-item"><span class="tool-name">CI/CD</span><span class="tool-cat">Automatisation</span></div>
+    <div class="tool-item"><span class="tool-name">API REST</span><span class="tool-cat">Intégration</span></div>
+    <div class="tool-item"><span class="tool-name">Notion</span><span class="tool-cat">Roadmap</span></div>
+    <div class="tool-item"><span class="tool-name">Linear</span><span class="tool-cat">Tracking</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-name">Hanene ABIDI</div>
+    <div class="footer-sub">Directrice de Projets Digitaux · Senior Delivery Manager</div>
+  </div>
+  <div class="footer-contact">
+    <a href="mailto:hanene.abidi18@gmail.com">hanene.abidi18@gmail.com</a>
+    <a href="tel:0643286930">06 43 28 69 30</a>
+    <span style="font-size:0.75rem;color:var(--muted)">Île-de-France</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.timeline-item, .fade-in').forEach(el => observer.observe(el));
+
+  // Stagger timeline items on scroll
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+</script>
+</body>
+</html>
